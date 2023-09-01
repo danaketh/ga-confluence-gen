@@ -1,0 +1,28 @@
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "danaketh"
+    reviewers:
+      - "danaketh"
+    labels:
+      - "dependency"
+      - "gh-action"
+      
+  # Go
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    assignees:
+      - "danaketh"
+    reviewers:
+      - "danaketh"
+    labels:
+      - "dependency"
+      - "gomod"
