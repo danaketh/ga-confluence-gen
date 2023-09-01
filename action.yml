@@ -1,0 +1,6 @@
+name: "Confluence Page Generator"
+description: "Generates Confluence pages from your OpenAPI and documentation files"
+
+runs:
+  using: docker
+  image: Dockerfile
