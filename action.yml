@@ -1,6 +1,20 @@
 name: "Confluence Page Generator"
 description: "Generates Confluence pages from your OpenAPI and documentation files"
 
+inputs:
+  confluence-domain:
+    required: true
+    description: "The name of your Confluence instance"
+  confluence-username:
+    required: true
+    description: "The username of the user that will create the pages"
+  confluence-token:
+    required: true
+    description: "The token of the user that will create the pages"
+  confluence-space:
+    required: true
+    description: "The space in which the pages will be created"
+
 runs:
   using: docker
   image: Dockerfile
