@@ -14,6 +14,9 @@ inputs:
   confluence-space:
     required: true
     description: "The space in which the pages will be created"
+  source-paths:
+    required: false
+    description: "Newline separated list of paths to search for the OpenAPI and documentation files"
 
 runs:
   using: docker
@@ -23,3 +26,4 @@ runs:
     - ${{ inputs.confluence-username }}
     - ${{ inputs.confluence-token }}
     - ${{ inputs.confluence-space }}
+    - ${{ inputs.source-paths }}
