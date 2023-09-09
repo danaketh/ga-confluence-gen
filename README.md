@@ -88,23 +88,6 @@ Confluence uses their own markup language for formatting. To make things easier,
 to HTML and then modifies the HTML to match the Confluence markup. This is not perfect and some things may not
 work as expected. If you find any issues, please open an issue or a pull request.
 
-For example Markdown code block is rendered as follows:
-
-```html
-<pre><code>
-    ...
-</code></pre>
-```
-
-This however doesn't do anything in Confluence. To fix this, the action converts it to:
-
-```html
-<ac:structured-macro ac:name="code">
-    <ac:parameter ac:name="language">...</ac:parameter>
-    <ac:plain-text-body><![CDATA[ ... ]]></ac:plain-text-body>
-</ac:structured-macro>
-```
-
 In most cases it's done by regex. You're welcome to open a pull request with a better solution.
 
 #### Front Matter
