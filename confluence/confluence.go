@@ -7,6 +7,7 @@ import (
 
 func ConvertToConfluence(markup string) string {
 	markup = ConvertCodeBlock(markup)
+	markup = RemoveLineBreaksFromParagraphs(markup)
 
 	return markup
 }
@@ -41,6 +42,25 @@ func PrependWarningMessage(markup string) string {
 
 func AppendWarningMessage(markup string) string {
 	markup = markup + "<ac:structured-macro ac:name=\"note\" ac:schema-version=\"1\"><ac:rich-text-body>\n<p>This page is generated automatically!</p></ac:rich-text-body></ac:structured-macro>"
+
+	return markup
+}
+
+func RemoveLineBreaksFromParagraphs(markup string) string {
+	re := regexp.MustCompile(`(?s)<p>(.*?)</p>`)
+
+	replaceFunc := func(s string) string {
+		matches := re.FindStringSubmatch(s)
+		if len(matches) != 2 {
+			return s
+		}
+		paragraph := matches[1]
+		paragraph = strings.ReplaceAll(paragraph, "\n", "")
+
+		return "<p>" + paragraph + "</p>"
+	}
+
+	markup = re.ReplaceAllStringFunc(markup, replaceFunc)
 
 	return markup
 }
