@@ -13,3 +13,5 @@ jobs:
           confluence-username: ${{ secrets.CONFLUENCE_USERNAME }}
           confluence-token: ${{ secrets.CONFLUENCE_TOKEN }}
           confluence-space: ${{ vars.CONFLUENCE_SPACE }}
+          source-paths: |
+            .
