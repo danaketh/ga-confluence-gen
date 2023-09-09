@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/danaketh/ga-confluence-gen/confluence"
+	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/renderer/html"
 	"go.abhg.dev/goldmark/frontmatter"
 	"log"
@@ -69,11 +70,16 @@ func main() {
 
 	// Create a new Markdown parser with the frontmatter extension
 	md := goldmark.New(
-		goldmark.WithExtensions(&frontmatter.Extender{
-			Mode: frontmatter.SetMetadata,
-		}),
+		goldmark.WithExtensions(
+			&frontmatter.Extender{
+				Mode: frontmatter.SetMetadata,
+			},
+			extension.Table,
+			extension.Typographer,
+		),
 		goldmark.WithRendererOptions(
 			html.WithXHTML(),
+			html.WithUnsafe(),
 		),
 	)
 
@@ -117,12 +123,6 @@ func main() {
 			if err != nil {
 				log.Println(err)
 				continue
-			}
-
-			// Table of contents
-			_, ok = meta["toc"]
-			if ok {
-				confluenceMarkup = confluence.PrependTableOfContents(confluenceMarkup)
 			}
 
 			// Prepend and append warning messages

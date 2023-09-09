@@ -6,8 +6,9 @@ import (
 )
 
 func ConvertToConfluence(markup string) string {
-	markup = ConvertCodeBlock(markup)
 	markup = RemoveLineBreaksFromParagraphs(markup)
+	markup = AddTableOfContents(markup)
+	markup = ConvertCodeBlock(markup)
 
 	return markup
 }
@@ -65,8 +66,8 @@ func RemoveLineBreaksFromParagraphs(markup string) string {
 	return markup
 }
 
-func PrependTableOfContents(markup string) string {
-	markup = "<ac:structured-macro ac:name=\"toc\" ac:schema-version=\"1\" data-layout=\"default\" />" + markup
+func AddTableOfContents(markup string) string {
+	markup = strings.ReplaceAll(markup, "<!-- TOC -->", "<ac:structured-macro ac:name=\"toc\" ac:schema-version=\"1\" data-layout=\"default\" />")
 
 	return markup
 }
