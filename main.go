@@ -49,7 +49,7 @@ func main() {
 	var confluenceUser = os.Args[2]
 	var confluenceToken = os.Args[3]
 	var confluenceSpace = os.Args[4]
-	var sourcePath = strings.Split(os.Args[5], "\n")
+	var sourcePath = strings.Split(strings.TrimSuffix(os.Args[5], "\n"), "\n")
 
 	// Configure API client
 	//goconfluence.SetDebug(true)
