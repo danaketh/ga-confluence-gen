@@ -20,6 +20,7 @@ func CollectMarkdownFiles(roots []string) (map[string][]string, error) {
 	mdFiles := make(map[string][]string)
 
 	for _, root := range roots {
+		fmt.Println("> in " + root)
 		err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				return err
